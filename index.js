@@ -15,7 +15,11 @@ class Timer {
   };
   tik = () => {
     const intervalTime = parseFloat(this.durationTime.value);
-    this.durationTime.value = intervalTime - 1;
+    if (intervalTime <= 0) {
+      this.pause();
+    } else {
+      this.durationTime.value = intervalTime - 1;
+    }
   };
 }
 const duration = document.querySelector("#duration");
