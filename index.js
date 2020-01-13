@@ -14,13 +14,19 @@ class Timer {
     clearInterval(this.interval);
   };
   tik = () => {
-    const intervalTime = parseFloat(this.durationTime.value);
+    const intervalTime = this.durationValue;
     if (intervalTime <= 0) {
       this.pause();
     } else {
-      this.durationTime.value = intervalTime - 1;
+      this.durationValue = this.durationValue - 1;
     }
   };
+  get durationValue() {
+    return parseFloat(this.durationTime.value);
+  }
+  set durationValue(time) {
+    this.durationTime.value = time;
+  }
 }
 const duration = document.querySelector("#duration");
 const startButton = document.querySelector("#start");
