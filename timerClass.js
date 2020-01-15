@@ -13,28 +13,27 @@ class Timer {
   }
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
     this.tik();
-    this.interval = setInterval(this.tik, 1000);
+    this.interval = setInterval(this.tik, 20);
   };
   pause = () => {
     clearInterval(this.interval);
   };
   tik = () => {
-    const intervalTime = this.durationValue;
-    if (intervalTime <= 0) {
+    if (this.timeRemaining <= 0) {
       this.pause();
       this.onCompelete();
     } else {
-      this.durationValue = this.durationValue - 1;
-      this.onTik();
+      this.timeRemaining = this.timeRemaining - 0.02;
+      this.onTik(this.timeRemaining);
     }
   };
-  get durationValue() {
+  get timeRemaining() {
     return parseFloat(this.durationTime.value);
   }
-  set durationValue(time) {
-    this.durationTime.value = time;
+  set timeRemaining(time) {
+    this.durationTime.value = time.toFixed(2);
   }
 }
